@@ -36,11 +36,20 @@ const contrario = function () {
 
 const codificar = function () {
   if (parrafoSimple.value != 0) {
-    let textoSimple = parrafoSimple.value;
-    for (let i = 0; i < valores.length; i++) {
-      if (parrafoSimple.value.includes(valores[i][1])) {
-        textoSimple = textoSimple.replaceAll(valores[i][1], valores[i][0]);
+    let textoSimple = ' ';
+    let existe = false;
+    for (let i = 0; i < parrafoSimple.value.length; i++) {
+      for (let j = 0; j < valores.length; j++) {
+        if (parrafoSimple.value[i] == valores[j][1]) {
+          textoSimple += parrafoSimple.value[i].replace(
+            valores[j][1],
+            valores[j][0]
+          );
+          existe = true;
+        }
       }
+      if (!existe) textoSimple += parrafoSimple.value[i];
+      existe = false;
     }
     parrafoEncriptado.value = textoSimple;
     parrafoEncriptado.style.display = 'block';
